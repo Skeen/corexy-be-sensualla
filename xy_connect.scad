@@ -1,8 +1,6 @@
 use <Library/20x40.scad>
 
-smoothrod_seperation = 40;
-
-module demo_render(demo_length = 100, smoothrod_seperation = 40)
+module demo_render(demo_length = 100)
 {
     translate([0,10,0])
         20x40(center=true, L=demo_length);
@@ -14,12 +12,12 @@ module demo_render(demo_length = 100, smoothrod_seperation = 40)
 
     for(j=[-1,1])
         color("gray")
-            translate([j*(smoothrod_seperation/2),0,10])
+            translate([0,0,10*j])
             rotate([90,0,0])
             cylinder(r=8/2, h=demo_length/2);
 }
 
-module xy_connect(smoothrod_seperation = 40)
+module xy_connect()
 {
     // TODO: Mount bearings and stuff
     difference()
@@ -28,19 +26,19 @@ module xy_connect(smoothrod_seperation = 40)
         {
             translate([0,-10,0])
                 rotate([0,90,0])
-                cylinder(r=16/2, h=smoothrod_seperation+16, center=true);
+                cylinder(r=16/2, h=16*2, center=true);
 
             for(j=[-1,1])
-                translate([j*(smoothrod_seperation/2),0,10])
+                translate([0,0,10*j])
                     rotate([90,0,0])
                     cylinder(r=16/2, h=20);
         }
         translate([0,-10,0])
             rotate([0,90,0])
-            cylinder(r=8/2, h=smoothrod_seperation+16, center=true);
+            cylinder(r=8/2, h=16*2, center=true);
 
         for(j=[-1,1])
-            translate([j*(smoothrod_seperation/2),0,10])
+            translate([0,0,10*j])
                 rotate([90,0,0])
                 cylinder(r=8/2, h=20);
 
@@ -48,5 +46,5 @@ module xy_connect(smoothrod_seperation = 40)
 
 }
 
-demo_render(100, smoothrod_seperation);
-xy_connect(smoothrod_seperation);
+demo_render(100);
+xy_connect();

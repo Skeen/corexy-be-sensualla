@@ -83,13 +83,13 @@ translate([0, -j*((footprint_y/2) - alu_frame_width),0])
 rotate([0,0,90*j])
 smooth_holder();
 
-x_smoothrod_seperation = 40;
-translate([0,-47+(47*2*$t),0])
+x_smoothrod_seperation = 0;
+translate([0,-62+(62*2*$t),0])
 {
 // x-smooth rods
 color("gray")
 for(i=[-1,1])
-    translate([0, i*(x_smoothrod_seperation/2),-10])
+    translate([0,0,-20+i*10])
     rotate([0,90,0])
     cylinder(r=8/2, h=inner_area_x, center=true);
 
@@ -97,14 +97,14 @@ for(i=[-1,1])
 for(i=[-1,1])
 translate([i*((footprint_x/2) - alu_frame_width * 2),0,-20])
     rotate([0,0,90*i])
-    xy_connect(x_smoothrod_seperation);
+    xy_connect();
 
 // x-carriage
 //translate([0,0,-10+8/2+3/2])
-translate([-49+(49*2*$t),0,0])
-translate([0,0,-10])
+translate([-59+(59*2*$t),0,0])
+translate([0,0,-20])
 rotate([0,0,90])
-x_carriage(x_smoothrod_seperation);
+x_carriage();
 }
 
 echo("---------------------------------------------------------------");
